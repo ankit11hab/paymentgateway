@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hustler's Donate | Payment</title>
+</head>
+
+<body>
+    <h3 style="margin: 20px 20px 0 40px;color:rgb(0, 0, 61)">Payment form</h3>
+    <div style="margin: 40px 20px 0 40px;font-size: 20px;">
+        <div style="max-width: 600px">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="eg: Arka Dutta">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" placeholder="Enter your email ID">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Type</label>
+                <div class="col-sm-10" style = "font-size: 10px;">
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style = "font-size: 16px;">
+                        <option selected><span style = "font-size: 10px;">Choose...</span></option>
+                        <option value="1">Credit Card</option>
+                        <option value="2">Debit Card</option>
+                        <option value="3">Paypal</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="amount" class="col-sm-2 col-form-label">Amount</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="amount" placeholder="Amount to be donated">
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" style="margin-top: 25px;width:100px" id='but'>Pay</button>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        document.getElementById('but').addEventListener("click", () => {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var amount = document.getElementById('amount').value;
+
+            Email.send({
+                Host: "smtp.elasticemail.com",
+                Username: "softech256@gmail.com",
+                Password: "B1B7F32749B1D764B01982A84953A5B89317",
+                To: `${email}`,
+                From: "softech256@gmail.com",
+                Subject: `Donation Successful!`,
+                Body: `Hi ${name},<br><br>
+                Thank you very much for donating an amount of <b>Rs. ${amount}</b> to Hustler's Den. We truly and sincerely appreciate your support of our mission.<br><br>
+                Thanking you. <br><br>
+                Yours faithfully,<br>
+                Arka Dutta<br>
+                Founder - Hustler's Den`,
+            }).then((message) => alert("Payment successful"));
+        })
+    </script>
+</body>
+
+</html>
